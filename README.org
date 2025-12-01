@@ -1,0 +1,3 @@
+* Day 1
+
+A simple intruction-following problem. The only trick - using mod.
