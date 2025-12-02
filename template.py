@@ -1,5 +1,1 @@
-def main():
-    pass
-
-if __name__ == '__main__':
-    main()
+input = open("input.txt").read().strip()
