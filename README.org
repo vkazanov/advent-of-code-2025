@@ -6,3 +6,9 @@ A simple intruction-following problem. The only trick - using mod.
 
 Again, a relative simple brute-force problem pair. Mostly knowledge of python trivia
 checked.
+
+* Day 3
+
+A problem where I was tempted to use some kind of random subset choice, or even dynamic
+programming or something. But then realized that it's always possible to pick the best
+option from existing ones.
