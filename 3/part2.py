@@ -3,15 +3,18 @@ input = open("input.txt").readlines()
 def bank_to_joltage(bank):
     bank = list(map(int, bank.strip()))
     joltage = []
-    nums_left = 12
-    while nums_left:
-        max_index = len(bank) - nums_left
-        battery = max(bank[:max_index+1])
-        battery_i = bank.index(battery)
-        bank = bank[battery_i+1:]
-        nums_left -= 1
-        joltage.append(str(battery))
-    return int("".join(joltage))
+    left_i = 0
+    right_i = len(bank) - 12 + 1
+    while len(joltage) < 12:
+        subbank = bank[left_i:right_i]
+        battery = max(subbank)
+        left_i += subbank.index(battery) + 1
+        right_i += 1
+        joltage.append(battery)
+    return int("".join(map(str, joltage)))
+
+import timeit
+print("time: ", timeit.timeit(lambda: sum(map(bank_to_joltage, input)), number=2000))
 
 print("res: ", sum(map(bank_to_joltage, input)))
 
