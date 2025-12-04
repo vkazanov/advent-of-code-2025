@@ -1,6 +1,7 @@
 from util import cstr, COLOR, FORMAT
+from io import StringIO
 
-input = open("input.txt").read().strip().splitlines()
+input = open("input.txt")
 
 # input = """
 # ..@@.@@@@.
@@ -25,10 +26,14 @@ W = (0, -1)
 NW = (-1, -1)
 ALL_DIRS = [N, NE, E, SE, S, SW, W, NW]
 
+
+
 def neighbours(cell):
     r, c = cell
     for diff_r, diff_c in ALL_DIRS:
         yield r + diff_r, c + diff_c
+
+# Take 1, my naive approach
 
 cells = {}
 for r, row in enumerate(input):
@@ -53,4 +58,22 @@ while True:
         break
 
 assert(removed == 8354)
-print(removed)
+
+# Take 2, set-based solution, inspired by Reddit
+#
+
+def neighbours(cell):
+    r, c = cell
+    for diff_r, diff_c in ALL_DIRS:
+        yield r + diff_r, c + diff_c
+
+cells = {(r, c) for r, row in enumerate(open("input.txt"))
+                for c in (col for col, ch in enumerate(row) if ch == "@")}
+orig_len = len(cells)
+
+while True:
+    prev_len = len(cells)
+    cells &= {cell for cell in cells if len(cells & set(neighbours(cell))) >= 4}
+    if prev_len == len(cells): break
+
+assert(orig_len - len(cells) == 8354)
