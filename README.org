@@ -12,3 +12,7 @@ checked.
 A problem where I was tempted to use some kind of random subset choice, or even dynamic
 programming or something. But then realized that it's always possible to pick the best
 option from existing ones.
+
+* Day 4
+
+A simple 2D map counting problem. Most of the code is walking the map.
