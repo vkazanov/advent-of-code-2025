@@ -1,9 +1,13 @@
-from util import cstr, COLOR, FORMAT
 from io import StringIO
+import os
+import time
+
+from util import cstr, COLOR, FORMAT
+
+# Inputs
 
 input = open("input.txt")
-
-# input = """
+# input = StringIO("""
 # ..@@.@@@@.
 # @@@.@.@.@@
 # @@@@@.@.@@
@@ -14,7 +18,7 @@ input = open("input.txt")
 # @.@@@.@@@@
 # .@@@@@@@@.
 # @.@.@@@.@.
-# """.strip().splitlines()
+# """)
 
 N = (-1, 0)
 NE = (-1, 1)
@@ -26,7 +30,25 @@ W = (0, -1)
 NW = (-1, -1)
 ALL_DIRS = [N, NE, E, SE, S, SW, W, NW]
 
-
+def render(cells):
+    if not cells:
+        print("No cells remaining.")
+        return
+    min_r = min(r for r, c in cells)
+    max_r = max(r for r, c in cells)
+    min_c = min(c for r, c in cells)
+    max_c = max(c for r, c in cells)
+    os.system('clear')
+    for r in range(min_r, max_r + 1):
+        row = ''
+        for c in range(min_c, max_c + 1):
+            if (r, c) in cells:
+                row += '\033[92m#\033[0m'
+            else:
+                row += '.'
+        print(row)
+    print(f"Cells remaining: {len(cells)}")
+    time.sleep(0.05)
 
 def neighbours(cell):
     r, c = cell
@@ -47,6 +69,7 @@ for cell in cells:
 
 removed = 0
 while True:
+    render(cells)
     did_remove = False
     for cell in [c for c in cells.keys() if cells[c] < 4]:
         del cells[cell]
