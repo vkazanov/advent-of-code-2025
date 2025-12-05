@@ -18,3 +18,8 @@ option from existing ones.
 A simple 2D map counting problem. Most of the code is walking the map.
 
 Also an interesting set-based approach tried in Part2: compact but slow.
+
+* Day 5
+
+Interval merging problem. Boils down to sorting intervals + extending when overlaps are
+found.
