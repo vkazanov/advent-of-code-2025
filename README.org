@@ -23,3 +23,7 @@ Also an interesting set-based approach tried in Part2: compact but slow.
 
 Interval merging problem. Boils down to sorting intervals + extending when overlaps are
 found.
+
+* Day 6
+
+Walking a matrix made of lines in weird ways. Technical but not horribly complicated.
