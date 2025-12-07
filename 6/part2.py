@@ -11,21 +11,21 @@ from util import cstr, COLOR, FORMAT
 # *   +   *   +  """)
 inp = open("input.txt")
 
-op_to_fun = { "*": (mul, 1), "+": (add, 0) }
+ops = { "*": (mul, 1), "+": (add, 0) }
 
 lines = inp.readlines()
 
 total = 0
-cur_nums = []
+nums = []
 op, op_init = add, 0
 for c, op_char in enumerate(lines[-1]):
     if op_char in "*+":
-        total += reduce(op, cur_nums, op_init)
-        op, op_init = op_to_fun[op_char]
-        cur_nums = []
+        total += reduce(op, nums, op_init)
+        op, op_init = ops[op_char]
+        nums = []
     num = "".join(lines[r][c] for r in range(len(lines)-1)).strip()
     if num:
-        cur_nums.append(int(num))
-total += reduce(op, cur_nums, op_init)
+        nums.append(int(num))
+total += reduce(op, nums, op_init)
 
 assert(total == 11419862653216)
