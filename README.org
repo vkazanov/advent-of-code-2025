@@ -27,3 +27,9 @@ found.
 * Day 6
 
 Walking a matrix made of lines in weird ways. Technical but not horribly complicated.
+
+* Day 7
+
+Beam simulation. Solved the first one using BFS but on a second day full simulation leads
+to combinatorial explosion. Instead did a slight smarter way that propagates numbers of
+paths on a row by row basis.
