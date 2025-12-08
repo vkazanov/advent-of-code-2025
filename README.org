@@ -38,3 +38,6 @@ paths on a row by row basis.
 
 A focused union-find implementation example, with the 2nd one being a simple tweak of the
 algorithm.
+
+After a bit of thinking, realized that using a min heap would avoid the need to sort a
+full list.

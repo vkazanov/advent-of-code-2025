@@ -33,11 +33,9 @@ inp = open("input.txt")
 
 class UnionFind:
     def __init__(self, elements):
-        self.parent = {}
-        self.rank = {}
-        self.set_num = 0
-        for e in elements:
-            self.find(e)
+        self.parent = {e: e for e in elements}
+        self.rank = {e: 0 for e in elements}
+        self.set_num = len(elements)
 
     def find(self, x):
         if x not in self.parent:
@@ -59,15 +57,16 @@ class UnionFind:
             ra, rb = rb, ra
         self.parent[rb] = ra
         if self.rank[ra] == self.rank[rb]:
-            self.rank[ra] -= 1
+            self.rank[ra] += 1
 
         self.set_num -= 1
         return self.set_num
 
 boxes = list(tuple(map(int, c.strip().split(","))) for c in inp)
 uf = UnionFind(boxes)
-dists = sorted([(dist(l, r), (l, r)) for l, r in combinations(boxes, 2)])
-for _, (this, that) in dists:
-    if uf.union(this, that) == 1:
-        assert(this[0] * that[0] == 8135565324)
-        break
+dists = [(dist(l, r), l, r) for l, r in combinations(boxes, 2)]
+heapq.heapify(dists)
+while True:
+    _, this, that = heapq.heappop(dists)
+    if uf.union(this, that) == 1: break
+assert(this[0] * that[0] == 8135565324)
