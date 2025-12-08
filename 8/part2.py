@@ -1,8 +1,10 @@
 from io import StringIO
+import heapq
 from functools import reduce
+from itertools import combinations
 from operator import mul
 from collections import Counter
-from math import sqrt, pow
+from math import sqrt, pow, dist
 from util import cstr, COLOR, FORMAT
 
 
@@ -30,10 +32,12 @@ from util import cstr, COLOR, FORMAT
 inp = open("input.txt")
 
 class UnionFind:
-    def __init__(self):
+    def __init__(self, elements):
         self.parent = {}
         self.rank = {}
         self.set_num = 0
+        for e in elements:
+            self.find(e)
 
     def find(self, x):
         if x not in self.parent:
@@ -49,7 +53,7 @@ class UnionFind:
         ra = self.find(a)
         rb = self.find(b)
         if ra == rb:
-            return False, self.set_num
+            return self.set_num
 
         if self.rank[ra] < self.rank[rb]:
             ra, rb = rb, ra
@@ -58,27 +62,12 @@ class UnionFind:
             self.rank[ra] -= 1
 
         self.set_num -= 1
-        return True, self.set_num
+        return self.set_num
 
 boxes = list(tuple(map(int, c.strip().split(","))) for c in inp)
-print("Boxes collected: ", len(boxes))
-
-dists = {}
-for l, r in ((l, r) for l in boxes for r in boxes if l != r):
-    if (l, r) in dists or (r, l) in dists: continue
-    dists[(l, r)] = (l[0] - r[0])**2 + (l[1] - r[1])**2 + (l[2] - r[2])**2
-print("Dists collected: ", len(dists))
-
-uf = UnionFind()
-for b in boxes:
-    uf.find(b)
-print("UF built")
-
-dists = sorted(((v, k) for k, v in dists.items()), reverse=True)
-while True:
-    _, (this, that)  = dists.pop()
-    _, set_num = uf.union(this, that)
-    if set_num == 1:
+uf = UnionFind(boxes)
+dists = sorted([(dist(l, r), (l, r)) for l, r in combinations(boxes, 2)])
+for _, (this, that) in dists:
+    if uf.union(this, that) == 1:
         assert(this[0] * that[0] == 8135565324)
         break
-print("Dists merged")
