@@ -33,3 +33,8 @@ Walking a matrix made of lines in weird ways. Technical but not horribly complic
 Beam simulation. Solved the first one using BFS but on a second day full simulation leads
 to combinatorial explosion. Instead did a slight smarter way that propagates numbers of
 paths on a row by row basis.
+
+* Day 8
+
+A focused union-find implementation example, with the 2nd one being a simple tweak of the
+algorithm.
