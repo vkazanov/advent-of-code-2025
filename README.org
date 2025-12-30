@@ -50,3 +50,7 @@ incoming/outgoing edges can form rectangles; and any internal line intersection 
 rectange, line lenght is always at least 3. Took some time to figure things out properly.
 
 The code is lengthy and dirty and I am not proud of it!
+
+* Day 10
+
+The first problem is just a simple BFS.
