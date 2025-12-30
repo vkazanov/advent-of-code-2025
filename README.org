@@ -54,3 +54,7 @@ The code is lengthy and dirty and I am not proud of it!
 * Day 10
 
 The first problem is just a simple BFS.
+
+The second one turned out too hard for my naive Python and BFS no matter what I tried. So
+I reformulated it in terms the Z3 Python constraint solver. For some reason it feels like
+cheating.
