@@ -41,3 +41,12 @@ algorithm.
 
 After a bit of thinking, realized that using a min heap would avoid the need to sort a
 full list.
+
+* Day 9
+
+Now this was an excersise in corner case finding! First one was pure iteration over space
+of possible solution, the second one required 3 insights: corners with certain
+incoming/outgoing edges can form rectangles; and any internal line intersection removes a
+rectange, line lenght is always at least 3. Took some time to figure things out properly.
+
+The code is lengthy and dirty and I am not proud of it!
