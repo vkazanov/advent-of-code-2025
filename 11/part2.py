@@ -53,6 +53,8 @@ def count_paths(adj, source, target):
     assert len(topo) == len(nodes)
 
     # Path counts
+    #
+    # Go using the topo order, starting with the source node.
     dp = {x: 0 for x in nodes}
     dp[source] = 1
     for u in topo:
