@@ -66,3 +66,7 @@ The first problem was easy to solve using BFS.
 I struggled a bit to scale up the solutoin to the second problem until I realized (using a
 graphviz graph visualization) that input.txt was a DAG, which made topological sort
 possbile. Having a well-defined order made counting paths trivial.
+
+* Day 12
+
+Well, this one was about checking if the stupid thing works first.
