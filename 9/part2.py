@@ -98,18 +98,6 @@ class Line:
         else:
             assert False
 
-    def points(self):
-        if self.is_vertical():
-            return set(Vec.of(self.start.x, y)
-                        for y in range(min(self.start.y, self.end.y),
-                                       max(self.start.y, self.end.y) + 1))
-        elif self.is_horizontal():
-            return set(Vec.of(x, self.start.y)
-                        for x in range(min(self.start.x, self.end.x),
-                                       max(self.start.x, self.end.x) + 1))
-        else:
-            assert False
-
     def __repr__(self):
         return "Line(" + repr(self.start) + ", " + repr(self.end) + ")"
 
