@@ -14,21 +14,23 @@ def find_min_solution(target, vectors):
     opt = Optimize()
 
     # only use positive counts
-    counts = [Int(f"c{i}") for i in range(n)]
-    for c in counts:
-        opt.add(c >= 0)
+    counts = IntVector("c", n)
+    for i in range(n):
+        opt.add(counts[i] >= 0)
 
     # check target
     for j in range(len(target)):
         opt.add(Sum([counts[i] * vectors[i][j] for i in range(n)]) == target[j])
 
     # minimize number of vectors used
-    opt.minimize(Sum(counts))
+    total = Sum(counts)
+    opt.minimize(total)
 
-    if opt.check() == sat:
-        return sum(opt.model().evaluate(counts[i]).as_long() for i in range(n))
-    else:
+    if opt.check() != sat:
         raise ValueError("No solution")
+
+    return opt.model().evaluate(total).as_long()
+
 
 total = 0
 for line in inp:
