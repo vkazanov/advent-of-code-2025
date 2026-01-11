@@ -1,3 +1,5 @@
+All AoC years moved to a [[https://github.com/vkazanov/advent-of-code][single repo]]
+
 * Day 1
 
 A simple intruction-following problem. The only trick - using mod.
